@@ -274,3 +274,28 @@ v5.8
 
 Latest:
 * Bug fixes.
+
+
+Per-Process Handle Export (Python):
+===============================
+The helper module `files/handle_export.py` enumerates the object-manager handles of one process, optionally filters them by object type and exports the result as JSON on top of the existing `VmmProcess.maps.handle()` Python API.
+
+From code:
+```
+import memprocfs
+from handle_export import export_handles_json
+
+vmm = memprocfs.Vmm(["-device", "c:/temp/win10_memdump.raw"])
+report = export_handles_json(vmm, pid=1234, types=["File", "Key"], output_path="handles.json")
+```
+
+From the command line (`-type` is repeatable or accepts a comma separated list and matches case-insensitively):
+```
+python files/handle_export.py -device win10_memdump.raw -pid 1234 -type File -type Key -out handles.json
+```
+
+The JSON envelope records the PID, image name, the WoW64 (32-bit process) flag, the applied type filter, a handle count and the full handle entries. Tests live in `tests/` and run without a memory dump or native binaries via fakes of the Python binding:
+```
+python -m unittest discover -s tests -v
+```
+The suite includes a dedicated 32-bit (WoW64) process case covering enumeration, type filtering and JSON round-trip.

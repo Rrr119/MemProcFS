@@ -1,0 +1,17 @@
+{
+  "root": "/home/dev/feedback/uid28764",
+  "B": "/home/dev/feedback/uid28764",
+  "sha": "62ca1c18ea0c2ccac8a571a2c0cef7f1325f2540",
+  "wslDistro": "Ubuntu-26.04",
+  "source": {
+    "owner": "ufrisk",
+    "repo": "MemProcFS",
+    "sha": "62ca1c18ea0c2ccac8a571a2c0cef7f1325f2540"
+  },
+  "fork": {
+    "owner": "Rrr119",
+    "repo": "MemProcFS",
+    "cloneUrl": "https://github.com/Rrr119/MemProcFS.git"
+  },
+  "at": "2026-11-19T23:52:56.094Z"
+}
